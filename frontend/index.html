@@ -5,8 +5,32 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
+	<!--登录部分CSS-->
+	<link rel="stylesheet" href="assets/css/logincss.css">
 </head>
 <body>
   
+	
+	<!--登录部分-->
+	<div id="login">
+		<img alt="loginphotos" id="loginp" src="assets/img/login1.jpg">
+		<img alt="loginsuccess" id="loginok" src="assets/img/ok.png">  
+		<form method="post" >
+			<table id="login-table">
+				<tr>
+					<td class="logintip">用户名:</td>
+					<td><input  id="username"  class="logintext"type="text"  size="10"></td>
+				</tr>
+				<tr>
+					<td class="logintip">密码:</td>
+					<td><input class="logintext" type="password" id="userpassword" size="10" ></td>
+				</tr>
+				<tr align="right">
+					<td><a id="register" href="#">&nbsp;注册&nbsp;</a></td>
+					<td><a id="login-button" onClick="test()">&nbsp;登&nbsp;&nbsp;&nbsp;陆&nbsp;</a></td>
+				</tr>
+			</table>
+		</form>
+	</div>
 </body>
 </html>
