@@ -1,30 +1,29 @@
-*{
-	margin: 0;
-	padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-main{
-	width: 100vw;
-	height: 100vh;
-	background-color: #eee;
+main {
+  width: 100vw;
+  height: 100vh;
+  background-color: #eee;
 }
-article{
-	height: 70vh;
-	display: flex;
-	justify-content: center;
-	align-items: center;
+article {
+  height: 70vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-article #moodBall{
-	width: 50vw;
-	height: 50vw;
-	background-color: transparent;
-	/*background-color: hsl(0, 100%, 0%);*/
-	border-radius: 50%;
-	box-shadow: 0.1rem 0.1rem 1rem 1rem #ddd;
-	transition: all 0.2s ease;
+article #moodBall {
+  width: 50vw;
+  height: 50vw;
+  background-color: transparent;
+  border-radius: 50%;
+  box-shadow: 0.1rem 0.1rem 1rem 1rem #ddd;
+  transition: all 0.2s ease;
 }
-aside .line{
-	text-align: center;
+aside .line {
+  text-align: center;
 }
 aside .line button {
-	margin: 1rem 4rem;
+  margin: 1rem 4rem;
 }
