@@ -14,12 +14,14 @@ article {
   align-items: center;
 }
 article #moodBall {
+  position: relative;
+  top: 0; left: 0;
   width: 50vw;
   height: 50vw;
   background-color: transparent;
   border-radius: 50%;
   box-shadow: 0.1rem 0.1rem 1rem 1rem #ddd;
-  transition: all 0.2s ease;
+  transition: all 0.3s ease;
 }
 aside .line {
   text-align: center;
