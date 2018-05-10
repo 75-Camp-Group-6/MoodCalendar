@@ -26,9 +26,6 @@ Ajax.send("post",url,"type=login;username="+document.getElementById("username").
 			window.close();
 		}
 	}
-	toregister(){
-		window.location.href="url";
-	}
 }
 
 class register{
@@ -60,5 +57,16 @@ function submit(){
 	if(registers.register().equals("success")){
 		registers.setcookie();
 		window.location.href="url?"+document.getElementById("username").value();
-	}
+	}else
+		alert("注册失败，请重试");
+}
+
+function loginsend(){
+	logins.setAjax(ajaxs);
+	if(logins.logincheck().equals("success")){
+		document.getElementById("login-table").style.display="none";
+		document.getElementById("loginok").style.display="inherit";
+		setTimeout(logins.setcookie(),3000);
+		window.location.href="url?"+document.getElementById("username").value();
+	}else{alert("登陆失败，请重试");}
 }

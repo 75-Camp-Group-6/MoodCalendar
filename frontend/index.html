@@ -6,31 +6,63 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 	<!--登录部分CSS-->
-	<link rel="stylesheet" href="assets/css/logincss.css">
+		<link rel="stylesheet" href="assets/css/logincss.css">
+	<script type="text/javascript" src="assets/js/ajax.js"></script>
+		<script type="text/javascript" src="assets/js/loginjs.js"></script>
+
 </head>
 <body>
-  
+<div class="content">
+<!-- M = moveto(M X,Y) ：将画笔移动到指定的坐标位置
+L = lineto(L X,Y) ：画直线到指定的坐标位置
+H = horizontal lineto(H X)：画水平线到指定的X坐标位置
+V = vertical lineto(V Y)：画垂直线到指定的Y坐标位置
+C = curveto(C X1,Y1,X2,Y2,ENDX,ENDY)：三次贝赛曲线
+S = smooth curveto(S X2,Y2,ENDX,ENDY)
+Q = quadratic Belzier curve(Q X,Y,ENDX,ENDY)：二次贝赛曲线
+T = smooth quadratic Belzier curveto(T ENDX,ENDY)：映射
+A = elliptical Arc(A RX,RY,XROTATION,FLAG1,FLAG2,X,Y)：弧线
+Z = closepath()：关闭路径 -->
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" class="circle-load-rect-svg" width="360" height="250" viewbox="0 0 600 400">
+  <polyline
+    points="100 300,135 200,160 260,190 200,220 300" class="g-rect-path"/>
+   <polyline points="100 300,135 200,160 260,190 200,220 300" class="g-rect-fill"/>
+   <circle cx="260" cy="270" r="26" class="g-circle-1"></circle>
+   <circle cx="260" cy="270" r="26"  class="g-circle-1-next"></circle>
+      <circle cx="340" cy="270" r="26" class="g-circle-2"></circle>
+      <circle cx="340" cy="270" r="26"  class="g-circle-2-next"></circle>
+      <path id="path" fill="none" stroke="red" stroke-dashoffset="0px" stroke-width="5px" 
+         d="M 450 260 
+            A 30 30 90 1 0 450 280 M 450 160 L 450 300
+             " >
+      </path>  
+      <path id="pathy" fill="none" stroke-dashoffset="0px" stroke-width="5px" 
+         d="M 480 250 L 486 280
+          A 8 6 60 1 0 524 286 Q 524 280 530 240 Q 530 240 534 280 Q 534 280 533 340 Q 533 340 528 380 Q 528 380 520 400 A 25 25 60 0 1 480 400
+         " >
+      </path> 
+</svg>
+</div>
+	
+  <div id="loginbg">
 	
 	<!--登录部分-->
 	<div id="login">
-		<img alt="loginphotos" id="loginp" src="assets/img/login1.jpg">
-		<img alt="loginsuccess" id="loginok" src="assets/img/ok.png">  
-		<form method="post" >
+<!--		<img alt="loginphotos" id="loginp" src="login1.jpg">-->
+		<img alt="loginsuccess" id="loginok" src="ok.png">  
 			<table id="login-table">
 				<tr>
 					<td class="logintip">用户名:</td>
-					<td><input  id="username"  class="logintext"type="text"  size="10"></td>
+					<td><input  id="username"  class="logintext" type="text"  size="10"></td>
 				</tr>
 				<tr>
 					<td class="logintip">密码:</td>
 					<td><input class="logintext" type="password" id="userpassword" size="10" ></td>
 				</tr>
-				<tr align="right">
-					<td><a id="register" href="#">&nbsp;注册&nbsp;</a></td>
-					<td><a id="login-button" onClick="test()">&nbsp;登&nbsp;&nbsp;&nbsp;陆&nbsp;</a></td>
-				</tr>
 			</table>
-		</form>
+		<a id="register" href="register.html">&nbsp;注册&nbsp;</a>
+		<a id="login-button" onClick="loginsend()">&nbsp;登&nbsp;&nbsp;&nbsp;陆&nbsp;</a>
 	</div>
+	  </div>
 </body>
 </html>
