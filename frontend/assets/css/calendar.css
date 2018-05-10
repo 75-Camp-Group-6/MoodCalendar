@@ -33,7 +33,6 @@ body{
   line-height: 1.4;
   font-family:"Zapf Chancery";
   font-size: 40px;
-  
 }
 .footer .line textarea:focus {
   outline: none;
@@ -48,7 +47,7 @@ body{
     height:300px;
     font-size:50px;
 }
-.header .return{
+.header #return{
     display:inline-block;
     text-align:center;
     border-radius: 40px;
@@ -71,15 +70,20 @@ body{
     font-size:40px;
     width: 600px; 
     margin: 20px auto;
-    background-color: rgba(247, 97, 130, 0.2);
+    font-weight:bolder;
+    background-color: rgba(255, 0, 0, 0.2);
     border-radius: 15px;
    } 
    #data > li{
        font-family: 幼圆;
    }
    #data > p{ 
-    display: flex; 
+    display: flex;
+    color: rgb(0, 183, 255);
    } 
+   #data > h5{
+    color: rgb(0, 183, 255);
+   }
    #data > h5{ 
     text-align: center; 
    } 
@@ -99,6 +103,7 @@ body{
    } 
    #title > li{ 
     float: left; 
+    color: rgb(0, 183, 255);
     width: 84px; 
     height: 52px; 
     line-height: 52px; 
@@ -113,14 +118,16 @@ body{
     width: 78px; 
     height: 68px; 
     margin: 1px 1px; 
-    border: 2px solid rgba(0,0,0,0); 
+    border: 2px solid rgba(0, 0, 0, 0); 
     line-height: 68px; 
     text-align: center; 
+    color: rgb(253, 92, 43);
     cursor: pointer; 
     font-family: 幼圆;
+    border-radius: 50px;
    } 
    #date > .hover:hover{ 
-    border: 2px solid red; 
+    border: 2px solid rgb(255, 238, 0); 
     border-radius: 50px;
    } 
    .active{ 
