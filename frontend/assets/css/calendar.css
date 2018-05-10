@@ -52,13 +52,13 @@ body{
     display:inline-block;
     text-align:center;
     border-radius: 40px;
-    box-shadow: 0 0 10px 10px #fff inset;
+    box-shadow: 0 0 7px 7px #fff inset;
     color: rgb(255, 255, 255);
-    font-weight:bold;
+    font-weight:bolder;
     left:0;
     width:60px;
     height:60px;
-    margin-top:100px;
+    margin-top:60px;
 }
 .header .user{
     display:inline-block;
