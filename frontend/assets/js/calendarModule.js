@@ -1,3 +1,6 @@
+import { Ajax } from "./loginjs.js";
+let colorResponse = ['#C0C0C0', '#5E2612', '#8B4513'];//传过来的颜色数据示例
+
 /**
  * @class Calender
  * @param containerid:包裹日历的容器id
@@ -5,15 +8,25 @@
  * @param dat：当前选择的时间
  */
 class Calender{
-    constructor(containerid,bacColors={data:[]}){
+    constructor(bacColors=[]){
         this.date=document.getElementById('date');
         this.bacColors = bacColors;
-        this.container = document.getElementById(containerid);
-        this.container.innerHTML=this.render(bacColors.data);
+        // this.container = document.getElementById(containerid);
+        // this.container.innerHTML=this.render(bacColors.data);
         this.dat=new Date();
-        this.date.onclick = function (event) {
-            let day = event.target.innerText; //获取到被点击的日期是几号
-        }
+        var nianD = this.dat.getFullYear(); //当前年份
+        var yueD = this.dat.getMonth(); //当前月
+        var tianD = this.dat.getDate(); //当前天
+        /*this.date.onclick = function (event) {
+            let clickDay = event.target.innerText; //获取到被点击的日期是几号
+            let clickMonth=this.dat.getMonth();
+            let clickYear=this.dat.getFullYear();
+            let clickDate=clickYear+'-'+clickMonth+'-'+clickDay;//发送ajax请求的日期格式是 年-月-日
+            Ajax.send('get', '', async, clickDate);
+            this.bacColors = Ajax.getreponse();
+            this.add();
+
+        }*/
     }
     // render(){
     //     const bacColors=this.bacColors.data;
@@ -44,7 +57,11 @@ class Calender{
         for (let i = 1; i <= setTian; i++) { //利用获取到的当月最后一天 把 前边的 天数 都循环 出来
             let li = document.createElement('li');
             li.innerText = i;//写一个月的日期
-            if (nian == nianD && yue == yueD && i == tianD) {
+            if(this.bacColors){
+                li.style.backgroundColor = this.bacColors[i - 1];
+            }
+
+            if (nian == this.nianD && yue == this.yueD && i == this.tianD) {
                 li.className = "active";
                 //调用后台借口
             } else {
@@ -72,6 +89,12 @@ class Calender{
     }
 
 };
+
+window.onload=function() {
+    const calender = new Calender(colorResponse);
+    calender.add();
+}
+
 
 // const pluginPrevious = {
 //     render(bacColor){
