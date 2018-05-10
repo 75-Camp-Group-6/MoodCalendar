@@ -40,21 +40,17 @@ function add(){
   }
 
 }
-function next(){
   document.getElementById("next").onclick = function(){
     //console.log("add");
     //调用接口返回json
     dat.setMonth(dat.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
     add(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
   };
-}
-function prev(){
   document.getElementById("prev").onclick = function(){
     //调用接口返回json
     dat.setMonth(dat.getMonth() - 1); //与下一月 同理
     add();
   };
-}
 
 var date= document.getElementById('date');
 date.onclick=function(event) {
