@@ -19,18 +19,18 @@ main .meteor {
   z-index: 0;
 }
 @keyframes flow{
-    0%{
-        background-position: -100vW 100vW;
-        opacity: 0;
-    }
-    50%{
-        background-position: 0 0;
-        opacity: 0.7;
-    }
-    100%{
-        background-position: 100vW -100vW;
-        opacity: 0;
-    }
+  0%{
+    background-position: -100vW 100vW;
+    opacity: 0;
+  }
+  50%{
+    background-position: 0 0;
+    opacity: 0.7;
+  }
+  100%{
+    background-position: 100vW -100vW;
+    opacity: 0;
+  }
 }
 article {
   position: relative;
