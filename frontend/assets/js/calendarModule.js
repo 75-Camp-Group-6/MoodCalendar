@@ -80,7 +80,6 @@ class Calender{
     click1 (event) {
             var x=event.target;
             var d = this.dat.getFullYear()+"-"+this.dat.getMonth()+"-"+x.innerText;
-            console.log("ajax("+"get,"+"url,"+"true,"+d+")");
             document.getElementById('note').innerHTML=d;
     }
 };
@@ -99,7 +98,6 @@ window.onload=function() {
         calender.next();
     }
     document.getElementById("returnto").onclick = function () {
-        console.log("111");
         window.history.back(-1); 
     }
 }
