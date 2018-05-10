@@ -46,7 +46,7 @@ class login{
 	}
 	logincheck()
 	{
-Ajax.send("post",url,"type=login&username="+document.getElementById("username").value()+"&"+"password="+document.getElementById("password").value());
+Ajax.send("post",url,"type=login;username="+document.getElementById("username").value()+";"+"password="+document.getElementById("password").value()+";");
 	}
 	setcookie(valn,valp){
 		document.cookie="username="+valn+";"+"password="+valp+";";
