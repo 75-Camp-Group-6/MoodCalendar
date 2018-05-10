@@ -1,0 +1,143 @@
+@keyframes forin{
+	0%{}
+	25%{background-color: #36F238;top: calc(100% - 25px);left: 0}
+	50%{background-color: #4D7DE8;top: calc(100% - 25px);left: calc(100% - 25px)}
+	75%{background-color: #F25558;left: calc(100% - 25px);top: 0}
+	100%{background-color:  #F7F229;}
+
+}
+@keyframes border{
+	from{
+		opacity: 0;
+		top: 0;
+	}
+}
+
+@keyframes border2{
+	75%{opacity: 0;}
+	100%{opacity: 1}
+}
+@keyframes border3{
+	0%{opacity: 0}
+	66%{opacity: 0;}
+	100%{opacity: 1;}
+}
+
+#item{
+	animation: border 4s infinite;
+	animation-iteration-count: 1;
+	position: fixed;
+	top:22vh;
+	left: 22vw;
+	width: 200px;
+	height: 200px;
+	border-radius: 200px;
+	background-color: #FFF800;
+}
+
+#item-0{
+	animation: border3 6s infinite;
+	animation-iteration-count: 1;
+	position: absolute;
+	top: 20%;
+	left: 15%;
+	width: 40px;
+	height: 40px;
+	background:black;
+	border-radius: 40px;
+	opacity: 0;
+}
+#item-1{
+	animation: border3 6s infinite;
+	animation-iteration-count: 1;
+	position: absolute;
+	top: 20%;
+	left: 65%;
+	width: 40px;
+	height: 40px;
+	background:black;
+	border-radius: 40px;
+	opacity: 0;
+}
+
+#us{
+	animation: border2 8s infinite;
+	animation-iteration-count: 1;
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	border-radius: 200px;
+}
+
+#bg{
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-size: 100% 100%;
+	background-repeat: no-repeat;
+	background-position: center;
+	background-image:url(registerbg.jpg);
+}
+
+#board{
+	animation: forin 8s infinite;
+	position: fixed;
+	top:0;
+	left: 0;
+	width:25px;
+	height:25px;
+	border-width: 0px;
+	border-radius:25px;
+	border-style:solid;
+	background-color:  #F7F229;
+	z-index: 1;
+}
+
+#table{
+	position: fixed;
+	top: 60vh;
+	left: 30vw;
+}
+
+#un{
+	position: fixed;
+	top: 62vh;
+	left: 15vw;
+	font-family: 幼圆；
+}
+
+#up{
+	position: fixed;
+	top: 68vh;
+	left: 15vw;
+	font-family: 幼圆；
+}
+
+
+#zc{
+	position: fixed;
+	background-color: #80E673;
+	color: white;
+	border-radius: 30px;
+	top: 80vh;
+	left: 40vw;
+	width: 80px;
+	height: 30px;
+	text-align: center;
+	text-decoration: none;
+	box-shadow: 10px 10px 5px #888888;
+}
+#zc:hover{
+	background-color:#73D3E7;
+	color:#FFFFFF;
+	box-shadow:0px 0px 0px;
+}
+.logintext{
+	border: 2;
+	border-radius: 10px;
+	opacity: 0.8;
+	width: 40vw;
+	height: 5vh;
+}
