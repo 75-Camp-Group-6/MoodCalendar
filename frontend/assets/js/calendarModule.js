@@ -1,4 +1,3 @@
-import { Ajax } from "./loginjs.js";
 let colorResponse = ['#C0C0C0', '#5E2612', '#8B4513'];//传过来的颜色数据示例
 
 /**
@@ -70,40 +69,37 @@ class Calender{
             document.getElementById('date').appendChild(li);
         }
     }
-
     next() {
-        document.getElementById("next").onclick = function () {
-            //console.log("add");
-            //调用接口返回json
-            dat.setMonth(dat.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
+            this.dat.setMonth(this.dat.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
             this.add(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
-        };
     }
-
-    prev() {
-        document.getElementById("prev").onclick = function () {
-            //调用接口返回json
-            dat.setMonth(dat.getMonth() - 1); //与下一月 同理
+    prev() {//调用接口返回json
+            this.dat.setMonth(this.dat.getMonth() - 1); //与下一月 同理
             this.add();
-        };
     }
-
+    click1 (event) {
+            var x=event.target;
+            var d = this.dat.getFullYear()+"-"+this.dat.getMonth()+"-"+x.innerText;
+            console.log("ajax("+"get,"+"url,"+"true,"+d+")");
+            document.getElementById('note').innerHTML=d;
+    }
 };
 
 window.onload=function() {
     const calender = new Calender(colorResponse);
+    const ajax = new Ajax();
     calender.add();
+    document.getElementById("date").onclick = function(event) {
+        calender.click1(event);
+    }
+    document.getElementById("prev").onclick = function () {
+        calender.prev();
+    }
+    document.getElementById("next").onclick = function () {
+        calender.next();
+    }
+    document.getElementById("returnto").onclick = function () {
+        console.log("111");
+        window.history.back(-1); 
+    }
 }
-
-
-// const pluginPrevious = {
-//     render(bacColor){
-
-//     }
-// };
-
-// const pluginNext = {
-//     render(bacColor) {
-
-//     }
-// }
