@@ -56,7 +56,7 @@ function prev(){
   };
 }
 
-var date=getElementById('date');
+var date= document.getElementById('date');
 date.onclick=function(event) {
   var day=event.target.innerText;
 }
