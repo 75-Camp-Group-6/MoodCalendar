@@ -31,8 +31,9 @@ body{
   padding: 0.8rem 1rem;
   color: #fff;
   line-height: 1.4;
-  font-family: 幼圆;
+  font-family:"Zapf Chancery";
   font-size: 40px;
+  
 }
 .footer .line textarea:focus {
   outline: none;
