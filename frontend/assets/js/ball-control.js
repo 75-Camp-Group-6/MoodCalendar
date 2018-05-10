@@ -1,19 +1,22 @@
-class Color {
-  constructor (r, g, b) {
-    this.setColor(r, g, b)
+class HSLColor {
+  constructor (h, s, l) {
+    this.setColor(h, s, l)
     this.getColor = this.getColor.bind(this)
     this.setColor = this.setColor.bind(this)
   }
   getColor () {
-    return {r: this._r, g: this._g, b:this._b}
+    return {h: this._h, s: this._s, l:this._l}
   }
-  setColor (r, g, b) {
-    this._r = this.valueControl(r)
-    this._g = this.valueControl(g)
-    this._b = this.valueControl(b)
+  setColor (h, s, l) {
+    this._h = this.HvalueControl(h)
+    this._s = this.SLvalueControl(s)
+    this._l = this.SLvalueControl(l)
   }
-  valueControl (c) {
-    return Math.round(c) > 255 ? 255 : ( Math.round(c) < 0 ? 0 : Math.round(c))
+  HvalueControl (c) {
+  	return Math.round(c) > 360 ? 360 : (Math.round(c) < 0 ? 0 : Math.round(c))
+  }
+  SLvalueControl (c) {
+    return Math.round(c) > 100 ? 100 : (Math.round(c) < 0 ? 0 : Math.round(c))
   }
 }
 class Point {
@@ -31,24 +34,24 @@ class Point {
     this._y = y
   }
 }
-class Line {
+class Vector {
   constructor (point1, point2, clientBox) {
     this._startPoint = point1  // Point类
     this._endPoint = point2
     this._clientBox = clientBox
-    this.setLine(point1, point2)
-    this.getLine = this.getLine.bind(this)
+    this.setVector(point1, point2)
+    this.setVector = this.setVector.bind(this)
     this.getExtremePoints = this.getExtremePoints.bind(this)
     this.getClientBox = this.getClientBox.bind(this)
-    this.setLine = this.setLine.bind(this)
+    this.setVector = this.setVector.bind(this)
     this.moveToNewPoint = this.moveToNewPoint.bind(this)
     this.setStartPoint = this.setStartPoint.bind(this)
     this.setEndPoint = this.setEndPoint.bind(this)
   }
-  getLine () { return {vector: this._vector, length: this._length} }
+  getVector () { return {vector: this._vector, length: this._length} }
   getExtremePoints () { return {startPoint: this._startPoint.getPoint(), endPoint: this._endPoint.getPoint()} }
   getClientBox () { return this._clientBox }
-  setLine (point1, point2) {
+  setVector (point1, point2) {
     let p1 = point1.getPoint()
     let p2 = point2.getPoint()
     // 起始点和终点是否都有效
@@ -66,15 +69,15 @@ class Line {
     let tmp_p = this._endPoint.getPoint()
     this._startPoint.setPoint(tmp_p.x, tmp_p.y)
     this._endPoint.setPoint(x, y)
-    this.setLine(this._startPoint, this._endPoint)
+    this.setVector(this._startPoint, this._endPoint)
   }
   setStartPoint (x, y) {
     this._startPoint.setPoint(x, y)
-    this.setLine(this._startPoint, this._endPoint)
+    this.setVector(this._startPoint, this._endPoint)
   }
   setEndPoint (x, y) {
     this._endPoint.setPoint(x, y)
-    this.setLine(this._startPoint, this._endPoint)
+    this.setVector(this._startPoint, this._endPoint)
   }
 }
 class Ball {
@@ -84,7 +87,7 @@ class Ball {
     if (initBallColor) {
       this._ballColor = initBallColor  // color类
     } else {
-      this._ballColor = new Color(255, 255, 255)
+      this._ballColor = new Color(0, 100, 100)
     }
     this.getBallOriginPosition = this.getBallOriginPosition.bind(this)
     this.getBallCurrentPosition = this.getBallCurrentPosition.bind(this)
@@ -96,7 +99,7 @@ class Ball {
   getBallCurrentPosition () { return this._currentPosition.getPoint() }
   getBallColor () { return this._ballColor.getColor() }
   moveBall (x, y) { this._currentPosition.setPoint(x, y) }
-  setBallColor (r, g, b) { this._ballColor.setColor(r, g, b) }
+  setBallColor (h, s, l) { this._ballColor.setColor(h, s, l) }
 }
 let throttle = (fn, time = 300) => {
   let timer
@@ -116,10 +119,10 @@ let initBall = ($touchBox, $ball, ...args) => {
     cH: $touchBox.clientHeight
   }
   let originPosition = new Point(0, 0)
-  let ballColor = args.length ? new Color(...args) : new Color(255, 255, 255)
+  let ballColor = args.length ? new HSLColor(...args) : new HSLColor(0, 100, 100)
   let ball = new Ball (originPosition, ballColor)
   changeBallColor($ball, ball.getBallColor())
-  let moveVector = new Line (new Point(-1, -1), new Point(-1, -1), clientBox)
+  let moveVector = new Vector (new Point(-1, -1), new Point(-1, -1), clientBox)
   $touchBox.addEventListener('touchstart', (event) => {
     // moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
     moveVector.setStartPoint(event.touches[0].clientX, event.touches[0].clientY)   // 方案2
@@ -127,7 +130,7 @@ let initBall = ($touchBox, $ball, ...args) => {
   $touchBox.addEventListener('touchmove', throttle((event) => {
     // moveVector.moveToNewPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
     moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)        // 方案2
-    moveDecideColor(moveVector, ball, $ball, 140)
+    moveDecideColor(moveVector, ball, $ball, 100)
     ballMove(moveVector, ball, $ball, 1.4)
   }))
   $touchBox.addEventListener('touchend', (event) => {
@@ -141,12 +144,12 @@ let initBall = ($touchBox, $ball, ...args) => {
 let getBallColor = (ball) => { return ball.getBallColor() }
 // 改变球的颜色
 let changeBallColor = ($target, color) => {
-  $target.style.background = 'radial-gradient(at 20vW -2rem, transparent, rgb(' + color.r + ', ' + color.g + ', ' + color.b + ') 80%, #999)'
-  $target.style.boxShadow = '0 0 1rem 0.1rem rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')'
+  $target.style.background = 'radial-gradient(at 15vW 0rem, transparent, hsl(' + color.h + ', ' + color.s + '%, ' + color.l + '%) 80%, #999)'
+  $target.style.boxShadow = '0 0 1rem 0.1rem hsl(' + color.h + ', ' + color.s + '%, ' + color.l + '%)'
 } 
 // 根据移动控制颜色
 let moveDecideColor = (moveVector, ball, $ball, extent) => {
-  let v = moveVector.getLine()
+  let v = moveVector.getVector()
   let vectorLen = v.length,  // [0, 根号2]
       vx = v.vector.x,  // [-1, 1]
       vy = v.vector.y   // [-1, 1]
@@ -155,34 +158,10 @@ let moveDecideColor = (moveVector, ball, $ball, extent) => {
   if (sin >= 0 && vx >= 0) { rad = sin }  // 第一象限
   if (vx < 0) { rad = Math.PI - sin }  // 第二、三象限
   if (sin < 0 && vx >= 0) { rad = Math.PI * 2 + sin }  // 第四象限
-  // 判断在六分象限的何处
-  let r_step = g_step = b_step = 0
-  switch (true) {
-    case rad <= (Math.PI / 6) :
-      g_step = vectorLen * extent
-      break
-    case rad <= (Math.PI / 2) :
-      b_step = vectorLen * extent
-      break
-    case rad <= (Math.PI * 5 / 6) :
-      r_step = vectorLen * extent
-      break
-    case rad <= (Math.PI * 7 / 6) :
-      g_step = - vectorLen * extent
-      break
-    case rad <= (Math.PI * 3 / 2) :
-      b_step = - vectorLen * extent
-      break
-    case rad <= (Math.PI * 11 / 6) :
-      r_step = - vectorLen * extent
-      break
-    default:
-      g_step = vectorLen * extent
-      break
-  }
-  // 改变
-  let color = ball.getBallColor()
-  ball.setBallColor(color.r + r_step, color.g + b_step, color.b + g_step)
+  let h = rad / Math.PI * 180
+      s = 70
+      l = (1 - vectorLen / Math.sqrt(2)) * 90
+  ball.setBallColor(h, s, l)
   changeBallColor($ball, ball.getBallColor())
 }
 // 改变球position: relative的位置
@@ -201,11 +180,8 @@ let ballMove = (moveVector, ball, $ball, extent) => {
 }
 // 求返回初始位置
 let ballBack = (ball, $ball) => {
-  let originPosition = ball.getBallOriginPosition(),
-      currentPosition = ball.getBallCurrentPosition()
-  let x = currentPosition.x - originPosition.x,
-      y = currentPosition.y - originPosition.y
-  changeBallPosition($ball, x, y)
+  let originPosition = ball.getBallOriginPosition()
+  changeBallPosition($ball, originPosition.x, originPosition.y)
 }
 // 使用示例
 window.onload = function () {
