@@ -68,8 +68,14 @@ class Line {
     this._endPoint.setPoint(x, y)
     this.setLine(this._startPoint, this._endPoint)
   }
-  setStartPoint (x, y) { this._startPoint.setPoint(x, y) }
-  setEndPoint (x, y) { this._endPoint.setPoint(x, y) }
+  setStartPoint (x, y) {
+    this._startPoint.setPoint(x, y)
+    this.setLine(this._startPoint, this._endPoint)
+  }
+  setEndPoint (x, y) {
+    this._endPoint.setPoint(x, y)
+    this.setLine(this._startPoint, this._endPoint)
+  }
 }
 class Ball {
   constructor (originPosition, initBallColor) {
@@ -115,11 +121,13 @@ let initBall = ($touchBox, $ball, ...args) => {
   changeBallColor($ball, ball.getBallColor())
   let moveVector = new Line (new Point(-1, -1), new Point(-1, -1), clientBox)
   $touchBox.addEventListener('touchstart', (event) => {
-    moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)
+    // moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
+    moveVector.setStartPoint(event.touches[0].clientX, event.touches[0].clientY)   // 方案2
   })
   $touchBox.addEventListener('touchmove', throttle((event) => {
-    moveVector.moveToNewPoint(event.touches[0].clientX, event.touches[0].clientY)
-    moveDecideColor(moveVector, ball, $ball, 120)
+    // moveVector.moveToNewPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
+    moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)        // 方案2
+    moveDecideColor(moveVector, ball, $ball, 140)
     ballMove(moveVector, ball, $ball, 1.4)
   }))
   $touchBox.addEventListener('touchend', (event) => {
@@ -133,11 +141,8 @@ let initBall = ($touchBox, $ball, ...args) => {
 let getBallColor = (ball) => { return ball.getBallColor() }
 // 改变球的颜色
 let changeBallColor = ($target, color) => {
-  if (color.r === 255 && color.g === 255 && color.b === 255) {
-    $target.style.backgroundColor = 'rgba(255, 255, 255, 0.5)'
-  } else {
-    $target.style.backgroundColor = 'rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')'
-  }
+  $target.style.background = 'radial-gradient(at 20vW -2rem, transparent, rgb(' + color.r + ', ' + color.g + ', ' + color.b + ') 80%, #999)'
+  $target.style.boxShadow = '0 0 1rem 0.1rem rgb(' + color.r + ', ' + color.g + ', ' + color.b + ')'
 } 
 // 根据移动控制颜色
 let moveDecideColor = (moveVector, ball, $ball, extent) => {
