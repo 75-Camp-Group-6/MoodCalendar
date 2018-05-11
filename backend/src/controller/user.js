@@ -147,7 +147,7 @@ module.exports = class extends Base {
     }).select();
     const finalResult = result.map((item) => {
       return {
-        day: item.date.getDay(),
+        day: item.date.getDate(),
         color: `hsl(${item.h}, ${item.s}, ${item.l})`,
         text: item.text,
         date: item.date
