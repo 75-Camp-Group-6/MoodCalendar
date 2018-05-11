@@ -173,13 +173,13 @@ let ballBack = (ball, $ball) => {
 }
 // 对外输出的方法API
 // 初始化DOM Ball并绑定touchmove监听功能
-let initBall = ($touchBox, $ball, HSLcolor) => {
+let initBall = ($touchBox, $ball, color) => {
   let clientBox = {
     cW: $touchBox.clientWidth,
     cH: $touchBox.clientHeight
   }
   let originPosition = new Point(0, 0)
-  let ballColor = HSLcolor ? HSLcolor : new HSLColor(0, 100, 100)
+  let ballColor = color ? new HSLColor(color.h, color.s, color.l) : new HSLColor(0, 100, 100)
   let ball = new Ball (originPosition, ballColor)
   setHSLColor($ball, ballColor)
   let moveVector = new Vector (new Point(-1, -1), new Point(-1, -1), clientBox)
@@ -210,10 +210,36 @@ let setBallColor = (ball, h, s, l) => { ball.setBallColor() }
 // import {Ajax} from './loginjs.js'
 // 页面加载完成
 window.onload = function () {
-  // let Ajax = new Ajax()
-  // 怎么用？获得回调后初始化球、文本框：
-  let ball = initBall(document.querySelector('.ball article'), document.getElementById('moodBall'))
+  // 获得当前日期
+  let date = new Date()
+  let month = parseInt(date.getMonth() + 1, 10)
+  let dateStr = date.getFullYear() + '-' + month.toString() + '-' + date.getDate()
+  let ball
   let textarea = document.querySelector('.ball textarea')
+  // 初始化
+  ajax({
+    url: 'http://75camp.fordream001.cn/user/getDay',
+    type: 'get',
+    data: {date: dateStr},
+    success: (res) => {
+      console.log(res)
+      if (res.errno === 0) {
+        let color = res.data.color
+        let text = res.data.text
+        ball = initBall(document.querySelector('.ball article'), document.getElementById('moodBall'), color)
+        textarea.innerHTML = ''
+      } else {
+        console.log('no value')
+        ball = initBall(document.querySelector('.ball article'), document.getElementById('moodBall'))
+        textarea.innerHTML = ''
+      }
+    },
+    error: (res) => {
+      console.log(res)
+      ball = initBall(document.querySelector('.ball article'), document.getElementById('moodBall'))
+      textarea.innerHTML = ''
+    }
+  })
   // 绑定按钮事件
   let submit_btn = document.querySelector('.ball .submit')
   let next_btn = document.querySelector('.ball .view')
@@ -221,11 +247,28 @@ window.onload = function () {
     // 获取当前值并提交
     let color = getBallColor(ball)
     let text = textarea.innerHTML
-    // 页面跳转
-    window.location.href="" 
+    ajax({
+      url: 'http://75camp.fordream001.cn/user/saveDay',
+      type: 'post',
+      data: {
+        date: dateStr,
+        color: color,
+        text: text
+      },
+      success: (res) => {
+        console.log(res)
+        // 页面跳转
+        // window.location.href="" 
+      },
+      error: (res) => {
+        console.log(res)
+        // 页面跳转
+        // window.location.href="" 
+      }
+    })
   })
   next_btn.addEventListener('click', () => {
     // 页面跳转
-    window.location.href="" 
+    // window.location.href="" 
   })
 }

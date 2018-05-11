@@ -1,16 +1,13 @@
-* {
-  margin: 0;
-  padding: 0;
-}
+body { margin: 0; }
 #index { display: block; }
-main {
+#index main {
   width: 100vw;
   height: 100vh;
   background-color: #eee;
   background-image: url(../img/bg2.jpg);
   background-size: cover;
 }
-main .meteor {
+#index main .meteor {
   width: 100vw;
   height: 100vh;
   position: absolute;
@@ -33,7 +30,7 @@ main .meteor {
     opacity: 0;
   }
 }
-article {
+#index article {
   position: relative;
   height: 70vh;
   display: flex;
@@ -41,7 +38,7 @@ article {
   align-items: center;
   z-index: 1;
 }
-article #moodBall {
+#index article #moodBall {
   position: relative;
   top: 0; left: 0;
   width: 50vw;
@@ -50,15 +47,15 @@ article #moodBall {
   box-shadow: 0 0 0.5rem 0.1rem #fff;
   transition: all 0.3s ease;
 }
-aside {
+#index aside {
   position: relative;
   height: 30vh;
   z-index: 1;
 }
-aside .line {
+#index aside .line {
   text-align: center;
 }
-aside .line textarea {
+#index aside .line textarea {
   margin-top: -7vh;
   width: 60vw;
   resize: none;
@@ -71,15 +68,15 @@ aside .line textarea {
   line-height: 1.4;
   font-family: 幼圆;
 }
-aside .line textarea:focus {
+#index aside .line textarea:focus {
   outline: none;
   box-shadow: 0 0 0.5rem 0.1rem #fff inset;
   background-color: rgba(255, 255, 255, 0.2);
 }
-aside .line textarea::-webkit-input-placeholder {
+#index aside .line textarea::-webkit-input-placeholder {
   color: #ccc;
 }
-aside .line button {
+#index aside .line button {
   width: 5.4rem;
   height: 2.6rem;
   margin: 1.4rem;
@@ -90,7 +87,7 @@ aside .line button {
   color: #eee;
   font-family: 幼圆;
 }
-aside .line button:focus {
+#index aside .line button:focus {
   outline: none;
   box-shadow: 0 0 0.5rem 0.1rem #fff inset;
   background-color: rgba(255, 255, 255, 0.2);
