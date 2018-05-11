@@ -7,9 +7,8 @@
  *        点击查看其他天的心情： 触发click1()函数，获取选中天的心情text并更新视图
  */
 class Calender{
-    constructor(bacColors=[]){
+    constructor(){
         this.date=document.getElementById('date');
-        this.bacColors = bacColors;
         this.moodText = this.getText(new Date());//今日的心情
         // this.container = document.getElementById(containerid);
         // this.container.innerHTML=this.render(bacColors.data);
@@ -17,6 +16,7 @@ class Calender{
         var nianD = this.dat.getFullYear(); //当前年份
         var yueD = this.dat.getMonth(); //当前月
         var tianD = this.dat.getDate(); //当前天
+        this.bacColors = this.getColors(nianD + '-' + yueD);//获取一个月的颜色
     }
 
     /**
@@ -39,11 +39,11 @@ class Calender{
         }
         for (let i = 1; i <= setTian; i++) { //利用获取到的当月最后一天 把 前边的 天数 都循环 出来
             let li = document.createElement('li');
-            li.innerText = i;//写一个月的日期
+            li.innerText = i;//写一个月的日期，1-30天
             if(this.bacColors){ //渲染每个表格单元的背景颜色
                 li.style.backgroundColor = this.bacColors[i - 1];
             }
-            if (this.moodText){//渲染心情
+            if (this.moodText){//填入心情
                 document.getElementById('note').innerHTML = this.moodText;
             }
 
@@ -58,22 +58,55 @@ class Calender{
     }
     next() {
             this.dat.setMonth(this.dat.getMonth() + 1); //当点击下一个月时 对当前月进行加1;
+            this.bacColors = this.getColors(this.dat.getFullYear()+'-'+this.dat.getMonth());
             this.add(); //重新执行渲染 获取去 改变后的 年月日 进行渲染;
     }
     prev() {//调用接口返回json
             this.dat.setMonth(this.dat.getMonth() - 1); //与下一月 同理
+            this.bacColors = this.getColors(this.dat.getFullYear() + '-' + this.dat.getMonth());
             this.add();
     }
     /**
      * 功能：发送ajax请求获取选中天的心情text
-     * @param exactDate 选中天的时间
-     * @return 返回选中天的心情text，直接返回string
+     * @param exactDate 选中天的时间， 如 2018 - 03
+     * @return 返回选中天2018 - 03 的心情text， 直接返回string
      */
     getText(exactDate){
         const ajax = new Ajax();
-        //ajax.send('get', 'url', 'async', exactDate);
+        //ajax.send('get', 'getText', 'async', exactDate);
         //let result = ajax.getreponse(); //接收到的格式是{ "code": xx, "text": "xxxxx"] }
         return exactDate +"xxxx"; //正式请求时用：return result[text];
+    }
+
+    /**
+     *
+     * @param exactMonth 当前月， 如 2018 - 03
+     * @return 输出： 2018 - 03 这个月的背景颜色数组
+     */
+    getColors(exactMonth){
+        const ajax = new Ajax();
+        //正式代码：ajax.send('get', 'getText', 'async', exactDate);
+        //正式代码：let colorResponse = ajax.getreponse();
+        //测试返回示例
+        let colorResponse = [
+            {
+                day: '1',
+                color: '#5E2612'
+            },
+            {
+                day: '2',
+                color: '#5E2612'
+            },
+            {
+                day: '4',
+                color: '#8B4513'
+            }
+        ]; //此处应该是ajax请求传过来的颜色数据示例
+        let colorArr=Array.from({length:31});//创建31天空数组
+        for (let i = 0; i < colorResponse.length;i++){
+            colorArr[colorResponse[i].day-1] = colorResponse[i].color;//往数组填充有颜色的天的背景色
+        }
+        return colorArr;
     }
 
     click1 (event) {
@@ -87,8 +120,8 @@ class Calender{
 };
 
 window.onload=function() {
-    let colorResponse = ['#C0C0C0', '#5E2612', '#8B4513']; //此处应该是ajax请求传过来的颜色数据示例
-    const calender = new Calender(colorResponse);//传入颜色数组
+
+    const calender = new Calender();
     //const ajax = new Ajax();
     calender.add();
     document.getElementById("date").onclick = function(event) {
