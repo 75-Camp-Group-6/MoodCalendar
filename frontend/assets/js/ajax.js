@@ -137,7 +137,7 @@
                 }
             };
             //发送请求
-            xhr.send(type === "get" ? null : data);
+            xhr.send(data);
             setTime(); //请求超时
         }
 
