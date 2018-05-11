@@ -2,13 +2,14 @@ const Base = require('./base.js');
 
 module.exports = class extends Base {
   async __before() {
-    if (this.ctx.action === 'login') {
+    if (this.ctx.action === 'login' || this.ctx.action === 'signup') {
       return;
     }
     let userInfo = await this.session('userinfo') || {};
     if (think.isEmpty(userInfo)) {
       return this.fail('NOT_LOGIN');
     }
+
     this.header('Access-Control-Allow-Origin', '*');
   }
 
@@ -88,7 +89,7 @@ module.exports = class extends Base {
     const h = this.post('h');
     const s = this.post('s');
     const l = this.post('l');
-    const dairy = this.post('dairy');
+    const text = this.post('text');
     const dayDoc = await day.where({
       date: new Date(reqDate)
     }).find();
@@ -100,7 +101,7 @@ module.exports = class extends Base {
         h: h,
         s: s,
         l: l,
-        dairy: dairy
+        text: text
       });
       return this.success({}, 'Updated Succeed');
     } else {
@@ -109,7 +110,7 @@ module.exports = class extends Base {
         h: h,
         s: s,
         l: l,
-        dairy: dairy
+        text: text
       });
       return this.success({}, 'Created Succeed');
     }
@@ -125,7 +126,7 @@ module.exports = class extends Base {
     if (!think.isEmpty(result)) {
       return this.success({
         color: `hsl(${result.h}, ${result.s}, ${result.l})`,
-        dairy: result.dairy
+        text: result.text
       }, 'Done');
     } else {
       return this.fail(15, 'No such day!', {});
@@ -134,6 +135,9 @@ module.exports = class extends Base {
   async getMonthAction() {
     const day = this.mongo('day');
     const date = this.post('date');
+    if (!date) {
+      return this.fail(400, 'Bad Requrest');
+    }
     const trueDate = new Date(date);
     const result = await day.where({
       date: {
@@ -145,9 +149,32 @@ module.exports = class extends Base {
       return {
         day: item.date.getDay(),
         color: `hsl(${item.h}, ${item.s}, ${item.l})`,
-        dairy: item.dairy
+        text: item.text,
+        date: item.date
       };
     });
     return this.success(finalResult, 'Done');
+  }
+
+  async addMuchAction () {
+    const day = this.mongo('day');
+    const reqDate = this.post('date');
+    const h = this.post('h');
+    const s = this.post('s');
+    const l = this.post('l');
+    const text = this.post('text');
+    let arr = []
+    for (let i = 0; i < 60; i++) {
+      arr.push(
+        {
+          date: new Date(new Date(reqDate).getTime() + 24 * 60 * 60 * 1000 * i),
+          h: '255',
+          s: '50%',
+          l: '30%',
+          text: 'testText'
+        }
+      );
+    }
+    day.addMany(arr);
   }
 };
