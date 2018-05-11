@@ -1,8 +1,8 @@
 {
   "apps": [{
-    "name": "backend",
+    "name": "<APP_NAME>",
     "script": "production.js",
-    "cwd": "G:\75Camp\MoodCalendar\backend",
+    "cwd": "<ROOT_PATH>",
     "exec_mode": "fork",
     "max_memory_restart": "1G",
     "autorestart": true,

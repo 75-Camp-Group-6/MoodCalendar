@@ -3,5 +3,6 @@ const path = require('path');
 require(path.join(process.cwd(), 'production.js'));
 
 test('first test', t => {
-  const indexModel = think.model('index');
+  const a = think.model('a');
+  console.log(a)
 })
