@@ -72,10 +72,10 @@ class Calender{
      * @return 返回选中天2018 - 03 的心情text， 直接返回string
      */
     getText(exactDate){
-        const ajax = new Ajax();
+        //const ajax = new Ajax();
         //ajax.send('get', 'getText', 'async', exactDate);
         //let result = ajax.getreponse(); //接收到的格式是{ "code": xx, "text": "xxxxx"] }
-        return exactDate +"xxxx"; //正式请求时用：return result[text];
+        return exactDate +"哎，今天心情不好啊"; //正式请求时用：return result[text];
     }
 
     /**
@@ -84,7 +84,7 @@ class Calender{
      * @return 输出： 2018 - 03 这个月的背景颜色数组
      */
     getColors(exactMonth){
-        const ajax = new Ajax();
+        //const ajax = new Ajax();
         //正式代码：ajax.send('get', 'getText', 'async', exactDate);
         //正式代码：let colorResponse = ajax.getreponse();
         //测试返回示例
@@ -111,7 +111,7 @@ class Calender{
 
     click1 (event) {
             let x = event.target;
-            let d = this.dat.getFullYear() + "-" + this.dat.getMonth() + "-" + x.innerText;
+            let d = this.dat.getFullYear() + "-" + (this.dat.getMonth()+1) + "-" + x.innerText;
             let text= this.getText(d);//获取心情text
             this.moodText = text;
             this.add();//更新视图
@@ -122,7 +122,6 @@ class Calender{
 window.onload=function() {
 
     const calender = new Calender();
-    //const ajax = new Ajax();
     calender.add();
     document.getElementById("date").onclick = function(event) {
         calender.click1(event);
