@@ -24,7 +24,10 @@ module.exports = class extends Base {
   async getStatsAction() {
     let userinfo = await this.session('userinfo');
     if (!think.isEmpty(userinfo)) {
-      this.success(userinfo, 'Done1');
+      this.success({
+        errno: 0,
+        errmsg: 'Logi'
+      }, 'Done1');
     } else {
       this.fail(11, `Didn't match`, {});
     }
@@ -128,7 +131,7 @@ module.exports = class extends Base {
       return this.fail(15, 'No such day!', {});
     }
   }
-  async getMonth() {
+  async getMonthAction() {
     const day = this.mongo('day');
     const date = this.post('date');
     const trueDate = new Date(date);
