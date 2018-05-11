@@ -6,7 +6,7 @@ module.exports = {
   logLevel: 'debug',
   proxies: {
       '/user': {
-          host: '127.0.0.1:8360',
+          host: '127.0.0.1:8360'
       }
   }
 }
