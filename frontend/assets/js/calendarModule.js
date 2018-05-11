@@ -73,7 +73,7 @@ class Calender{
         const ajax = new Ajax();
         ajax.send('get', 'url', 'async', exactDate);
         let result = ajax.getreponse(); //接收到的格式是{ "code": xx, "text": "xxxxx"] }
-        return result[text];
+        return exactDate +"xxxx"; //正式请求时用：return result[text];
     }
 
     click1 (event) {
