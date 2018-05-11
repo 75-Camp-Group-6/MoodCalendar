@@ -1,0 +1,29 @@
+Arguments: 
+  D:\Nodejs\node.exe F:\Yarn\bin\yarn.js remove simple-dev-server
+
+PATH: 
+  C:\Program Files (x86)\Razer Chroma SDK\bin;C:\Program Files\Razer Chroma SDK\bin;C:\ProgramData\Oracle\Java\javapath;I:\libs\AndroidSDK\platform-tools;D:\Libs\PY27\;D:\Libs\PY27\Scripts;D:\Libs\JDK\bin;C:\Windows\system32;C:\Windows;C:\Windows\System32\Wbem;C:\Windows\System32\WindowsPowerShell\v1.0\;C:\Program Files (x86)\NVIDIA Corporation\PhysX\Common;C:\Program Files (x86)\Windows Kits\8.1\Windows Performance Toolkit\;C:\Program Files\Microsoft SQL Server\130\Tools\Binn\;C:\Program Files (x86)\Windows Kits\10\Windows Performance Toolkit\;F:\Apache-Maven\bin;D:\Subversion\bin;C:\Program Files\Calibre2\;C:\Program Files (x86)\Pandoc\;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;F:\LLVM\bin;C:\Program Files\dotnet\;F:\CBeautify;C:\ProgramData\chocolatey\bin;D:\UltraEdit;C:\Program Files\TortoiseSVN\bin;D:\Java CC\bin;D:\Nodejs\;F:\Yarn\bin\;C:\Android;C:\Users\Fordream\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;F:\Fiddler2\Fiddler;C:\Users\Fordream\AppData\Roaming\npm;C:\Users\Fordream\AppData\Local\Yarn\bin;C:\WINDOWS\system32;C:\WINDOWS;C:\WINDOWS\System32\Wbem;C:\WINDOWS\System32\WindowsPowerShell\v1.0\;C:\WINDOWS\System32\OpenSSH\;D:\Git\cmd;C:\Users\Fordream\AppData\Local\Microsoft\WindowsApps;D:\Microsoft VS Code\bin;F:\Fiddler2\Fiddler;C:\Users\Fordream\AppData\Roaming\npm;C:\Users\Fordream\AppData\Local\Yarn\bin;%USERPROFILE%\AppData\Local\Microsoft\WindowsApps;
+
+Yarn version: 
+  1.5.1
+
+Node version: 
+  9.0.0
+
+Platform: 
+  win32 x64
+
+npm manifest: 
+  No manifest
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile
+
+Trace: 
+  Error: No lockfile in this directory. Run `yarn install` to generate one.
+      at new MessageError (F:\Yarn\lib\cli.js:186:110)
+      at F:\Yarn\lib\cli.js:89389:13
+      at <anonymous>

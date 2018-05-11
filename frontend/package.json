@@ -1,0 +1,9 @@
+{
+  "dependencies": {},
+  "scripts": {
+    "server": "http-dev-server -f ./dev-server-config.js"
+  },
+  "devDependencies": {
+    "http-dev-server": "^0.2.3"
+  }
+}
