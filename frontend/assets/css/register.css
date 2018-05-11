@@ -7,9 +7,26 @@
 
 }
 @keyframes border{
-	from{
+	0%{
+		background-color: #95FB7C;
 		opacity: 0;
 		top: 0;
+	}
+	25%{
+		background-color: #95FB7C;
+		opacity: 0.5
+	}
+	50%{
+		background-color:#FB7476;
+		opacity:0.5;
+	}
+	75%{
+		background-color:#3CCEF6;
+		opacity: 0.5;
+	}
+	100%{
+		background-color:black;
+		opacity: 0;
 	}
 }
 
@@ -24,40 +41,15 @@
 }
 
 #item{
-	animation: border 4s infinite;
+	animation: border 6s infinite;
 	animation-iteration-count: 1;
 	position: fixed;
 	top:22vh;
-	left: 22vw;
+	left: 23vw;
 	width: 200px;
 	height: 200px;
 	border-radius: 200px;
 	background-color: #FFF800;
-}
-
-#item-0{
-	animation: border3 6s infinite;
-	animation-iteration-count: 1;
-	position: absolute;
-	top: 20%;
-	left: 15%;
-	width: 40px;
-	height: 40px;
-	background:black;
-	border-radius: 40px;
-	opacity: 0;
-}
-#item-1{
-	animation: border3 6s infinite;
-	animation-iteration-count: 1;
-	position: absolute;
-	top: 20%;
-	left: 65%;
-	width: 40px;
-	height: 40px;
-	background:black;
-	border-radius: 40px;
-	opacity: 0;
 }
 
 #us{
