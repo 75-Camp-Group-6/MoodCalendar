@@ -47,7 +47,7 @@ module.exports = class extends Base {
         return this.fail(403, 'Login Fail', {});
       } else {
         this.session('userinfo', data);
-        return this.success({}, 'Done');
+        return this.success({}, 'Login Succeed！');
       }
     } else {
       return this.fail(400, 'Bad Request');
