@@ -186,6 +186,7 @@ let initBall = ($touchBox, $ball, color) => {
   $touchBox.addEventListener('touchstart', (event) => {
     // moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
     moveVector.setStartPoint(event.touches[0].clientX, event.touches[0].clientY)   // 方案2
+    moveVector.setEndPoint(event.touches[0].clientX, event.touches[0].clientY)
   })
   $touchBox.addEventListener('touchmove', throttle((event) => {
     // moveVector.moveToNewPoint(event.touches[0].clientX, event.touches[0].clientY)  // 方案1
