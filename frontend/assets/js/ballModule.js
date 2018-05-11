@@ -130,7 +130,7 @@ let setHSLColor = ($target, color) => {
 let setBallHSLColor = (ball, $ball, color) => {
   let HSLcolor = color.getColor()
   ball.setBallColor(HSLcolor.h, HSLcolor.s, HSLcolor.l)
-  setHSLColor($ball, HSLcolor)
+  setHSLColor($ball, color)
 } 
 // 根据位移控制DOM Ball颜色
 let moveDecideColor = (moveVector, ball, $ball, extent) => {
@@ -204,4 +204,28 @@ let initBall = ($touchBox, $ball, HSLcolor) => {
 let getBallColor = (ball) => { return ball.getBallColor() }
 // 设置DOM Ball颜色
 let setBallColor = (ball, h, s, l) => { ball.setBallColor() }
-export {initBall, setBallColor, getBallColor}
+// export {initBall, setBallColor, getBallColor}
+// 导入ballMoudle, Ajax
+// import {initBall, setBallColor, getBallColor} from './ballModule.js'
+// import {Ajax} from './loginjs.js'
+// 页面加载完成
+window.onload = function () {
+  // let Ajax = new Ajax()
+  // 怎么用？获得回调后初始化球、文本框：
+  let ball = initBall(document.querySelector('.ball article'), document.getElementById('moodBall'))
+  let textarea = document.querySelector('.ball textarea')
+  // 绑定按钮事件
+  let submit_btn = document.querySelector('.ball .submit')
+  let next_btn = document.querySelector('.ball .view')
+  submit_btn.addEventListener('click', () => {
+    // 获取当前值并提交
+    let color = getBallColor(ball)
+    let text = textarea.innerHTML
+    // 页面跳转
+    window.location.href="" 
+  })
+  next_btn.addEventListener('click', () => {
+    // 页面跳转
+    window.location.href="" 
+  })
+}
