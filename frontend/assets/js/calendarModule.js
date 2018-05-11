@@ -71,8 +71,8 @@ class Calender{
      */
     getText(exactDate){
         const ajax = new Ajax();
-        ajax.send('get', 'url', 'async', exactDate);
-        let result = ajax.getreponse(); //接收到的格式是{ "code": xx, "text": "xxxxx"] }
+        //ajax.send('get', 'url', 'async', exactDate);
+        //let result = ajax.getreponse(); //接收到的格式是{ "code": xx, "text": "xxxxx"] }
         return exactDate +"xxxx"; //正式请求时用：return result[text];
     }
 
@@ -80,6 +80,7 @@ class Calender{
             let x = event.target;
             let d = this.dat.getFullYear() + "-" + this.dat.getMonth() + "-" + x.innerText;
             let text= this.getText(d);//获取心情text
+            this.moodText = text;
             this.add();//更新视图
 
     }
